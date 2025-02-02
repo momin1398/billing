@@ -6,7 +6,7 @@ type Customer struct {
 	gorm.Model
 	Name  string `json:"name"`
 	Email string `json:"email"`
-	Phone string `json:"Phone"`
+	Phone string `json:"phone"`
 	Trips []Trip
 }
 type Trip struct {
