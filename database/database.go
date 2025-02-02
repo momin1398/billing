@@ -19,6 +19,7 @@ func Init() {
 	if err != nil {
 		panic(err)
 	}
+
 	DB = d
 	// AutoMigrate models
 	err1 := DB.AutoMigrate(&models.User{}, &models.Customer{}, &models.Trip{}, &models.Invoice{})
