@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"fmt"
 	"net/http"
 	"strings"
 	"time"
@@ -57,6 +58,7 @@ func AuthMiddleware() gin.HandlerFunc {
 func AdminOnly() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		role, _ := c.Get("role")
+		fmt.Println(role)
 		if role != "admin" {
 			c.JSON(http.StatusForbidden, gin.H{"error": "permission denied"})
 			c.Abort()

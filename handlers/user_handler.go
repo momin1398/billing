@@ -15,8 +15,8 @@ func CreateUser(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	role, _ := c.Get("role")
-	if role != "admin" {
+
+	if user.Role != "admin" {
 		c.JSON(http.StatusForbidden, gin.H{"error": "only admin can create user"})
 
 		return
@@ -29,7 +29,8 @@ func CreateUser(c *gin.Context) {
 	user.Password = string(hashedPwd)
 
 	if err := database.DB.Create(&user).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create user"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create user" + err.Error()})
+		return
 	}
 	c.JSON(http.StatusCreated, user)
 }

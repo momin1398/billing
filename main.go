@@ -23,6 +23,6 @@ func main() {
 	r.GET("/invoices/:id", middleware.AuthMiddleware(), handlers.GetInvoice)
 	r.GET("/customers/:id/invoices", middleware.AuthMiddleware(), handlers.GetInvoicesForCustomer)
 
-	r.Run(":8080")
+	r.Run(":9080")
 
 }
